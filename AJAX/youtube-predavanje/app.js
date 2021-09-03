@@ -32,7 +32,7 @@ $("#btn").click(function() {
     $.ajax({
         url: "https://learnwebcode.github.io/json-example/animals-1.json",
         success: function(result) {
-            $("#animal-info").text(JSON.stringify(result));
+            result.forEach(item => $("#animal-info").text(JSON.stringify(item["name"])));
         }
     });
 });
