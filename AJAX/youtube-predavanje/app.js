@@ -28,6 +28,7 @@
 // ajax verzija
 
 $("#btn").click(function() {
+    $("#animal-info").text("...loading");
     $.ajax({
         url: "https://learnwebcode.github.io/json-example/animals-1.json",
         success: function(result) {
