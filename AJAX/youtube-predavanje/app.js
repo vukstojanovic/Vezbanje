@@ -28,11 +28,10 @@
 // ajax verzija
 
 $("#btn").click(function() {
-    $("#animal-info").text("...loading");
     $.ajax({
         url: "https://learnwebcode.github.io/json-example/animals-1.json",
         success: function(result) {
-            result.forEach(item => $("#animal-info").text(JSON.stringify(item["name"])));
+            result.forEach(item => $("#animal-info").append("<p>" + JSON.stringify(item["name"]) + "</p>"));
         }
     });
 });
