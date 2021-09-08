@@ -1,0 +1,38 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 350px;
+    grid-auto-rows: minmax(150px, auto);
+    gap: 20px;
+}
+
+
+ .grid-item {
+    background-color: lightblue;
+    border: 2px solid blue;
+    padding: 10px;
+}
+
+/* .grid-item-1 {
+    grid-column: span 2;
+}
+
+.grid-item-2 {
+    grid-row: span 2;
+}
+
+.grid-item-3 {
+    grid-row: span 2;
+} */
+
+
+.grid-item-1 {
+    align-self: start;
+    justify-self: center;
+}
