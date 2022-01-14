@@ -1,17 +1,11 @@
-import React, { FormEventHandler, useRef, useState } from "react";
+import React, { FormEventHandler, useEffect, useRef, useState } from "react";
 import useInput from "./hooks/useInput";
+import useKey from "./hooks/useKey";
 
 export default function UserForm() {
   const [firstName, bindFirstName] = useInput("");
   const [lastName, bindLastName] = useInput("");
-  //   const someRef = useRef(null);
-
-  //   const someObj = {
-  //     name: "Vuk",
-  //     age: 29,
-  //   };
-
-  //   console.log(someRef.current);
+  useKey("s", () => alert("key pressed"));
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
