@@ -5,7 +5,7 @@ import useKey from "./hooks/useKey";
 export default function UserForm() {
   const [firstName, bindFirstName] = useInput("");
   const [lastName, bindLastName] = useInput("");
-  useKey("s", () => alert("key pressed"));
+  // useKey("s", () => alert("key pressed"));
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
