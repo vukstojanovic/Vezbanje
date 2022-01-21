@@ -6,8 +6,14 @@ import * as yup from "yup";
 const schema = yup.object().shape({
   username: yup.string().required(),
   email: yup.string().email().required(),
-  age: yup.number().positive().integer().required(),
-  password: yup.string().min(4).max(10).required(),
+  age: yup.number().positive().min(13).integer().required(),
+  password: yup
+    .string()
+    .min(4)
+    .max(8)
+    .required()
+    .matches(/^(?=.*[A-Z])/, "Must contain at least one uppercase character")
+    .matches(/^(?=.*[0-9])/, "Must contain at least one number"),
   confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
 });
 
@@ -21,6 +27,7 @@ export default function Form() {
   });
 
   function submitForm(data) {
+    alert("Submitted successfully, check console log for data object.");
     console.log(data);
   }
 
