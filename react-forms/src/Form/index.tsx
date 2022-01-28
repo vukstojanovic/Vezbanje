@@ -26,6 +26,8 @@ export default function Form() {
     resolver: yupResolver(schema),
   });
 
+  // throw Error("ooops!!!");
+
   function submitForm(data) {
     alert("Submitted successfully, check console log for data object.");
     console.log(data);

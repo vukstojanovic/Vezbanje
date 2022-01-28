@@ -1,10 +1,13 @@
 import "./App.css";
 import Form from "./Form";
+import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   return (
     <div className="App">
-      <Form />
+      <ErrorBoundary>
+        <Form />
+      </ErrorBoundary>
     </div>
   );
 }

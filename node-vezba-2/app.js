@@ -1,3 +1,3 @@
 const getUserInfo = require("./sayName");
 
-getUserInfo.sayAdress();
+console.log(getUserInfo());
