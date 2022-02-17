@@ -1,0 +1,19 @@
+{
+  "name": "express-vezba",
+  "version": "1.0.0",
+  "description": "express vezba",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "Vuk",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
+  }
+}
