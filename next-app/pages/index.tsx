@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { PropsWithChildren } from "react";
 import styles from "../styles/Home.module.css";
+import ArticleList from "../components/articleList";
 
 type ArticleProps = {
   userId: number;
@@ -9,17 +10,16 @@ type ArticleProps = {
   body: string;
 };
 
-function Home ({ articles }) => {
+function Home(props: any) {
+  const articles = props.articles;
   console.log(articles);
   return (
     <div className={styles.container}>
       <h1>Welcome to Next</h1>
-      {articles.map((article: any) => (
-        <h3>{article.title}</h3>
-      ))}
+      <ArticleList articles={articles} />
     </div>
   );
-};
+}
 
 export default Home;
 
