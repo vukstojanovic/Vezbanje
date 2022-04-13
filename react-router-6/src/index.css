@@ -28,3 +28,16 @@ code {
   font-weight: bold;
   color: aqua;
 }
+
+.layout {
+  padding: 15px 10px;
+  background-color: royalblue;
+  color: gold;
+  font-weight: bold;
+  text-align: center;
+}
+
+.outlet-container {
+  margin: 15px;
+  /* background-color: gold; */
+}
