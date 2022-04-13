@@ -42,13 +42,13 @@ select,
   width: 300px;
 }
 
-select {
+/* select {
   background-color: lightgray;
   padding: 5px;
   color: black;
   font-weight: bold;
-}
+} */
 
-select option {
+/* select option {
   color: white;
-}
+} */

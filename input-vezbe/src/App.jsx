@@ -1,6 +1,7 @@
 import "./App.css";
 import Select from "react-select";
 import { useState } from "react";
+import FormComponent from "./FormComponent";
 
 function App() {
   const options = [
@@ -28,6 +29,7 @@ function App() {
         <option value="javascript">Javascript</option>
         <option value="html">Html</option>
       </select>
+      <FormComponent />
     </div>
   );
 }
