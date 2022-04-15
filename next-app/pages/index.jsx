@@ -23,6 +23,26 @@ const dummy_meetups = [
   },
 ];
 
-export default function Home() {
-  return <MeetupList meetups={dummy_meetups} />;
+export default function Home(props) {
+  return <MeetupList meetups={props.meetups} />;
+}
+
+// export async function getServerSideProps(context) {
+//   const req = context.req;
+//   const res = context.res;
+
+//   return {
+//     props: {
+//       meetups: dummy_meetups,
+//     },
+//   };
+// }
+
+export async function getStaticProps() {
+  return {
+    props: {
+      meetups: dummy_meetups,
+    },
+    revalidate: 10,
+  };
 }

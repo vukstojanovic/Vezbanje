@@ -31,6 +31,10 @@ form {
   border: none;
 }
 
+/* .my-select:focus > option:checked {
+  box-shadow: 0 0 10px 100px gray inset;
+} */
+
 .arrow {
   position: absolute;
   background-color: #3b3c47;
