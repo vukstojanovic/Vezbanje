@@ -1,14 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
-import MainHeader from "./MainHeader";
-import Welcome from "./Welcome";
-import Products from "./Products";
-import ProductDetail from "./ProductDetail";
-import Layout from "./Layout";
-import Technologies from "./Technologies";
-import Employees from "./Employees";
-import ProjectsPage from "./ProjectsPage";
-import ProtectedRoute from "./ProtectedRoute";
+import MainHeader from "./components/MainHeader";
+import Welcome from "./components/Welcome";
+import Products from "./components/Products";
+import ProductDetail from "./components/ProductDetail";
+import Layout from "./components/Layout";
+import Technologies from "./components/Technologies";
+import Employees from "./components/Employees";
+import ProjectsPage from "./components/ProjectsPage";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
@@ -19,13 +19,17 @@ function App() {
         <Routes>
           <Route path="/welcome" element={<Welcome />} />
           <Route element={<Layout />}>
-            <Route element={<ProtectedRoute allowedRole="admin" />}>
+            <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
               <Route path="/technologies" element={<Technologies />} />
             </Route>
-            <Route element={<ProtectedRoute allowedRole="manager" />}>
+            <Route element={<ProtectedRoute allowedRoles={["manager"]} />}>
               <Route path="/employees" element={<Employees />} />
             </Route>
-            <Route path="/projects" element={<ProjectsPage />} />
+            <Route
+              element={<ProtectedRoute allowedRoles={["manager", "admin"]} />}
+            >
+              <Route path="/projects" element={<ProjectsPage />} />
+            </Route>
           </Route>
         </Routes>
       </main>

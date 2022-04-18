@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router";
 
-function ProtectedRoute({ allowedRole }) {
-  if (localStorage.getItem("role") === allowedRole) {
+function ProtectedRoute({ allowedRoles }) {
+  if (allowedRoles.some((role) => role === localStorage.getItem("role"))) {
     return <Outlet />;
   }
   return <Navigate to="/welcome" />;
