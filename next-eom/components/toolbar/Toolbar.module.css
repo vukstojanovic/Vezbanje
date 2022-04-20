@@ -1,0 +1,15 @@
+.main ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.main ul li {
+  display: block;
+  text-align: center;
+  margin: 0px 25px;
+}

@@ -1,0 +1,24 @@
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.eom-page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eom-heading {
+  margin-top: 50px;
+}
+
+.eom-page img {
+  border-radius: 50%;
+  width: 250px;
+}

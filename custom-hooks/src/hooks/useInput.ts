@@ -3,9 +3,9 @@ import React, { useState } from "react";
 export default function useInput(initialValue: string) {
   const [value, setValue] = useState(initialValue);
 
-  // function reset() {
-  //     setValue(initialValue);
-  // }
+  function reset() {
+    setValue(initialValue);
+  }
 
   const bind = {
     value,
@@ -13,5 +13,5 @@ export default function useInput(initialValue: string) {
       setValue(e.target.value),
   };
 
-  return [value, bind];
+  return [value, bind, reset];
 }
