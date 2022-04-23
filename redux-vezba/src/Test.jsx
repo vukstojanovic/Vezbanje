@@ -3,22 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { add, del } from "./redux/actions/cartActions";
 import nameSelector from "./redux/reducers/cartReducer";
+import { connect } from "react-redux";
 
 function Test() {
   const [itemName, itemNameObj, resetItemName] = useInput("");
-  const itemList = useSelector((state) => nameSelector(state));
+  const itemList = useSelector((state) => state.cart.arr);
+  // const nameList = useSelector(nameSelector);
   const dispatch = useDispatch();
+  // const itemList = arr;
   const [currentId, setCurrentId] = useState(2);
-  console.log(itemList);
+  // console.log(nameList);
 
   function addNewItem() {
     dispatch(add({ id: currentId + 1, name: itemName }));
+    // add({ id: currentId + 1, name: itemName });
     setCurrentId((prev) => prev + 1);
     resetItemName();
   }
 
   function removeLast() {
     dispatch(del());
+    // del();
   }
 
   return (
@@ -39,5 +44,20 @@ function Test() {
     </div>
   );
 }
+
+// function mapStateToProps(state) {
+//   return {
+//     arr: state.cart.arr,
+//   };
+// }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     add: (obj) => dispatch(add(obj)),
+//     del: () => dispatch(del()),
+//   };
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Test);
 
 export default Test;

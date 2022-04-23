@@ -5,6 +5,7 @@ const initState = {
   arr: [
     { id: 1, name: "jetpack" },
     { id: 2, name: "sword" },
+    { id: 3, name: "helmet" },
   ],
   length: 5,
 };
@@ -23,6 +24,9 @@ export default function cartReducer(state = initState, action) {
   }
 }
 
-export const nameSelector = createSelector([(state) => state.arr], (array) => {
-  return array.map((item) => item.name);
-});
+export const nameSelector = createSelector(
+  (state) => state.arr,
+  (array) => {
+    return array.map((item) => item.name);
+  }
+);
