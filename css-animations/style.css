@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+main h1 {
+  margin-top: 20px;
+}
+
+.animation-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.loading-ball {
+  width: 100px;
+  height: 100px;
+  background-color: #009579;
+  opacity: 0.5;
+  border-radius: 50%;
+  animation: loading-first 0.9s ease-in-out infinite alternate;
+}
+
+.loading-ring {
+  width: 100px;
+  height: 100px;
+  border: 16px solid transparent;
+  border-top: 16px solid #009579;
+  /* border-bottom: 16px solid #009579; */
+  border-radius: 50%;
+  animation: loading-second 1s linear infinite;
+}
+
+.card-container {
+  display: flex;
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.card,
+.red-card,
+.img-card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 3px solid black;
+}
+
+.card {
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+  border: none;
+}
+
+.red-card {
+  background: red;
+  backface-visibility: hidden;
+}
+
+.img-card {
+  background: url("https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80")
+    center center no-repeat;
+  backface-visibility: hidden;
+  opacity: 0;
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.burger {
+  width: 33px;
+  cursor: pointer;
+  height: 33px;
+}
+
+.burger-line {
+  height: 3px;
+  background-color: black;
+  margin: 6px 0px;
+  transition: all 0.2s ease-in-out;
+}
+
+.burger:hover .burger-line:first-child {
+  transform: rotate(45deg) translate(6.5px, 6.5px);
+  /* transform-origin: left top; */
+}
+
+.burger:hover .burger-line:nth-of-type(2) {
+  opacity: 0;
+}
+
+.burger:hover .burger-line:last-child {
+  transform: rotate(-45deg) translate(6.5px, -6.5px);
+  /* transform-origin: left top; */
+}
+
+@keyframes loading-first {
+  to {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+@keyframes loading-second {
+  0% {
+    border-color: #009579 transparent transparent transparent;
+  }
+  50% {
+    /* transform: rotate(1turn); */
+    border-color: #009579 #009579 #009579 transparent;
+  }
+  75% {
+    border-color: transparent transparent #009579 #009579;
+  }
+  100% {
+    border-color: #009579 transparent transparent transparent;
+  }
+}

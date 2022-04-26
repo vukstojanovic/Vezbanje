@@ -1,0 +1,10 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 21px 0px;
+  margin-top: auto;
+}
+
+.footer span {
+  color: var(--lightgray);
+}

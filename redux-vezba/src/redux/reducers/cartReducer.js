@@ -25,7 +25,7 @@ export default function cartReducer(state = initState, action) {
 }
 
 export const nameSelector = createSelector(
-  (state) => state.arr,
+  (state) => state.cart.arr,
   (array) => {
     return array.map((item) => item.name);
   }
