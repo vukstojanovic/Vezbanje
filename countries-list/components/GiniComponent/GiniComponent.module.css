@@ -1,0 +1,33 @@
+.gini-container {
+  display: flex;
+  align-items: center;
+  /* flex-wrap: wrap; */
+}
+
+.bar-container {
+  height: 6px;
+  width: 133px;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.bar-filler {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background-color: var(--greenblue);
+}
+
+.gini-text {
+  font-size: 12px;
+  min-width: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media only screen and (max-width: 790px) {
+  .bar-container {
+    margin-right: 0px;
+    width: 100px;
+  }
+}

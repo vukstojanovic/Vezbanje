@@ -1,13 +1,99 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.test {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.modal h3 {
+  margin-bottom: 15px;
+}
+
+.modal {
+  border-radius: 5px;
+  background-color: ivory;
+  font-family: Arial, Helvetica, sans-serif;
+  /* first */
+  /* position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) scale(0); */
+  /* second */
+  position: relative;
+  width: 60%;
+  /* height: unset; */
+  margin: 100px auto 20px;
+  transform: scale(1);
+  padding: 15px;
+  box-shadow: 5px 8px 13px rgb(116, 115, 115);
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0, 0, 0, 0.3);
+  /* overflow-y: scroll; */
+  display: block;
+  width: 100%;
+  opacity: 1;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  cursor: pointer;
+  font-size: 35px;
+}
+
+.input-container input {
+  border-radius: 3px;
+  margin-left: 5px;
+  display: block;
+}
+
+.innactive-modal {
+  /* transform: translateX(-50%) scale(1); */
+  /* transform: scale(0);
+  height: 0px; */
+}
+
+.innactive-overlay {
+  /* height: 0px;
+  position: relative;
+  opacity: 0; */
+  display: none;
 }

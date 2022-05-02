@@ -1,0 +1,48 @@
+.general-data {
+  padding: 30px 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 352px;
+}
+
+.general-data img {
+  width: 283px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 1px solid var(--lightgray);
+}
+
+.country-name {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.country-continent {
+  color: var(--navy);
+  margin-bottom: 42px;
+  font-weight: 500;
+}
+
+.population-and-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.number {
+  color: var(--navy);
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.description {
+  color: var(--lightgray);
+  font-size: 14px;
+  font-weight: 500;
+}

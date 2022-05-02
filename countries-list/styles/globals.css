@@ -18,15 +18,19 @@ a {
 }
 
 :root {
-  --white: #fff;
+  --white: #ffffff;
   --greenblue: #21b6b7;
   --navy: #124a63;
   --lightgray: #b9c9d1;
   --dark: #333333;
+  --black: #000000;
+  --verylightgray: #e0e0e0;
 }
 
 .container {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  /* display: flex;
+  flex-direction: column; */
+  padding-bottom: 63px;
 }

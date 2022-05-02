@@ -1,11 +1,14 @@
 import styles from "./Header.module.css";
 import Logo from "../../assets/Logo.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 function Header() {
   return (
     <header className={styles.header}>
-      <Image src={Logo} />
+      <Link href="/">
+        <Image src={Logo} />
+      </Link>
     </header>
   );
 }

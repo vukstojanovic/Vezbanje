@@ -2,7 +2,11 @@
   display: flex;
   justify-content: center;
   padding: 21px 0px;
-  margin-top: auto;
+  /* margin-top: auto; */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .footer span {
