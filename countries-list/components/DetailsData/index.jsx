@@ -52,7 +52,7 @@ function DetailsData({
           {borderCountriesData.map((country) => {
             const { name, flag } = country;
             return (
-              <Link href={`/${name.toLowerCase()}`}>
+              <Link href={`/${name.toLowerCase()}`} key={name}>
                 <div className={styles["single-neighbour"]}>
                   <div className={styles["img-container"]}>
                     <img src={flag} alt={`flag of ${name}`} />

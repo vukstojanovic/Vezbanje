@@ -1,18 +1,45 @@
 import CountryContent from "../../components/CountryContent";
+import Head from "next/head";
 
-export default function CountryPage({ countryData, borderCountriesData }) {
+export default function CountryPage({
+  countryData,
+  borderCountriesData,
+  countryName,
+}) {
   console.log(countryData);
   return (
-    <CountryContent
-      countryData={countryData}
-      borderCountriesData={borderCountriesData}
-    />
+    <>
+      <Head>
+        <title>{countryName}</title>
+      </Head>
+      <CountryContent
+        countryData={countryData}
+        borderCountriesData={borderCountriesData}
+      />
+    </>
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const response = await fetch(`https://restcountries.com/v3.1/all`);
+  const countriesData = await response.json();
+
+  return {
+    fallback: false,
+    paths: countriesData.map((country, index) => {
+      const commonName = country.name.common.toLowerCase();
+      return {
+        params: {
+          countryName: commonName,
+        },
+      };
+    }),
+  };
+}
+
+export async function getStaticProps(context) {
   const response = await fetch(
-    `https://restcountries.com/v3.1/name/${context.query.countryName}`
+    `https://restcountries.com/v3.1/name/${context.params.countryName}`
   );
   const countryData = await response.json();
   const borderCountriesList = countryData[0].borders
@@ -34,6 +61,9 @@ export async function getServerSideProps(context) {
     props: {
       countryData: countryData[0],
       borderCountriesData,
+      countryName:
+        context.params.countryName[0].toUpperCase() +
+        context.params.countryName.slice(1),
     },
   };
 }

@@ -3,16 +3,33 @@ import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useInput } from "../../custom-hooks/useInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import ArrowComponent from "../ArrowComponent";
 
 function CountriesTable({ countriesList }) {
   const router = useRouter();
   const [inputValue, inputObj, resetValue] = useInput(
     router.query.search || ""
   );
-  const [numOfClicks, setNumOfClicks] = useState(0);
-  const [currentOrder, setCurrentOrder] = useState("");
-  const [categoryClicked, setCategoryClicked] = useState("");
+  const [direction, setDirection] = useState(null);
+  const [categoryClicked, setCategoryClicked] = useState(null);
+
+  const countries = sortArr(filterArr(countriesList));
+
+  function handleDirection() {
+    if (!direction) {
+      setDirection("down");
+    } else if (direction === "down") {
+      setDirection("up");
+    } else {
+      setDirection(null);
+    }
+  }
+
+  function handleSort(category) {
+    handleDirection();
+    setCategoryClicked(category);
+  }
 
   function searchByInput(e) {
     e.preventDefault();
@@ -23,43 +40,36 @@ function CountriesTable({ countriesList }) {
     }
   }
 
-  function handleNumberOfClicks() {
-    if (numOfClicks < 2) {
-      setNumOfClicks((prev) => prev + 1);
-    } else {
-      setNumOfClicks((prev) => prev - 1);
+  function sortByDirection(x, y) {
+    if (direction === "up") {
+      return x > y ? 1 : -1;
+    } else if (direction === "down") {
+      return x > y ? -1 : 1;
     }
   }
 
-  function handleCategoryClicked(e) {
-    setCategoryClicked(e.target.id);
-  }
-
-  function orderArr(arr, direction) {
-    if (direction !== 0) {
-      arr.sort((a, b) => {
-        const {
-          name: nameA,
-          population: populationA,
-          area: areaA,
-          gini: giniA,
-        } = a;
-        const {
-          name: nameB,
-          population: populationB,
-          area: areaB,
-          gini: giniB,
-        } = b;
-        if (categoryClicked === "name") {
-          if (direction === 1) {
-            return a - b;
-          } else {
-            return b - a;
-          }
-        }
-      });
+  function sortArr(arr) {
+    if (!direction) {
+      return arr;
     }
-    return arr;
+    return [...arr].sort((a, b) => {
+      if (categoryClicked === "name") {
+        return sortByDirection(
+          a[categoryClicked].common,
+          b[categoryClicked].common
+        );
+      } else if (categoryClicked === "gini") {
+        const valueA = a[categoryClicked]
+          ? Object.values(a[categoryClicked])[0]
+          : "";
+        const valueB = b[categoryClicked]
+          ? Object.values(a[categoryClicked])[0]
+          : "";
+        return sortByDirection(valueA, valueB);
+      } else {
+        return sortByDirection(a[categoryClicked], b[categoryClicked]);
+      }
+    });
   }
 
   function filterArr(arr) {
@@ -84,7 +94,7 @@ function CountriesTable({ countriesList }) {
   return (
     <div className={styles["countries-page"]}>
       <section className={styles["search-segment"]}>
-        <p>Found 3 countries</p>
+        <p>Found {countries.length} countries</p>
         <form onSubmit={searchByInput} className={styles["input-container"]}>
           <div className={styles["icon-container"]}>
             <FaSearch size={18} />
@@ -100,29 +110,41 @@ function CountriesTable({ countriesList }) {
         <div className={styles["head-row"]}>
           <div className={styles["head-field"]}>&nbsp;</div>
           <div className={`${styles["head-field"]} ${styles["head-name"]}`}>
-            <span id="name" onClick={handleCategoryClicked}>
+            <span id="name" onClick={() => handleSort("name")}>
               Name
             </span>
+            {categoryClicked === "name" && (
+              <ArrowComponent direction={direction} />
+            )}
           </div>
           <div
             className={`${styles["head-field"]} ${styles["head-population"]}`}
           >
-            <span id="population" onClick={handleCategoryClicked}>
+            <span id="population" onClick={() => handleSort("population")}>
               Population
             </span>
+            {categoryClicked === "population" && (
+              <ArrowComponent direction={direction} />
+            )}
           </div>
           <div className={styles["head-field"]}>
-            <span id="area" onClick={handleCategoryClicked}>
+            <span id="area" onClick={() => handleSort("area")}>
               Area (km)
             </span>
+            {categoryClicked === "area" && (
+              <ArrowComponent direction={direction} />
+            )}
           </div>
           <div className={styles["head-field"]}>
-            <span id="gini" onClick={handleCategoryClicked}>
+            <span id="gini" onClick={() => handleSort("gini")}>
               Gini
             </span>
+            {categoryClicked === "gini" && (
+              <ArrowComponent direction={direction} />
+            )}
           </div>
         </div>
-        {filterArr(countriesList).map((country, index) => {
+        {countries.map((country, index) => {
           const { flags, name, population, area, gini, capital } = country;
           const flag = (flags && flags.png) || (flags && flags.svg);
           const commonName = name.common;

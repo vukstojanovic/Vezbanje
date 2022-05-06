@@ -16,11 +16,14 @@
   display: flex;
   align-items: center;
   width: 45%;
+  background-color: var(--lightblue);
+  border-radius: 5px;
 }
 
 .icon-container {
   display: flex;
   align-items: center;
+  padding: 15px;
 }
 
 .input-container input {
@@ -32,6 +35,7 @@
   border: none;
   outline: none;
   font-size: 16px;
+  background-color: inherit;
 }
 
 .input-container input::placeholder {
@@ -42,8 +46,6 @@
 }
 
 .countries-table {
-  /* display: grid;
-  grid-template-columns: 88px 0.7fr 1fr 1fr 1fr; */
   margin-top: 43px;
 }
 
@@ -65,12 +67,13 @@
 }
 
 .head-field {
-  color: var(--lightgray);
+  color: var(--greenblue);
   justify-content: center;
 }
 
 .head-field span {
   cursor: pointer;
+  color: var(--lightgray);
 }
 
 .head-name {
@@ -84,9 +87,14 @@
   align-items: center;
 }
 
+.countries-row {
+  background-color: var(--whiteContent);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
 .countries-row:hover {
-  /* background-color: rgb(228, 225, 225); */
-  margin-top: -5px;
+  transform: translateY(-4px);
   box-shadow: 3px 6px 12px rgb(224, 220, 220);
   border-radius: 5px;
 }
@@ -129,6 +137,11 @@
   justify-content: flex-end;
 }
 
+body.dark .countries-row,
+body.dark .input-container {
+  background-color: var(--darkContent);
+}
+
 @media only screen and (max-width: 1170px) {
   .countries-page {
     margin: 0 24px;
@@ -149,10 +162,6 @@
 
   .input-container {
     width: 100%;
-  }
-
-  .icon-container {
-    margin-left: 12px;
   }
 
   .countries-row,
@@ -180,6 +189,6 @@
 
 @media only screen and (max-width: 340px) {
   .countries-page {
-    margin: 0 12px;
+    margin: 0 15px;
   }
 }

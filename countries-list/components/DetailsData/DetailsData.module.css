@@ -1,8 +1,13 @@
 .details-data {
   padding: 30px 56px 49px 40px;
   margin-left: 50px;
-  /* min-width: 766px; */
   flex: 1;
+  background-color: var(--whiteContent);
+  border-radius: 8px;
+}
+
+.details-data h3 {
+  color: var(--black);
 }
 
 .single-info {
@@ -86,9 +91,10 @@
   flex-direction: column;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 770px) {
   .details-data {
     margin-left: 0px;
+    margin-top: 0px;
     width: 100%;
   }
 }

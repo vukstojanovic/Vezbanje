@@ -6,6 +6,14 @@
   /* align-items: center; */
 }
 
-.header img {
+.img-container {
+  display: flex;
+  align-items: center;
+  color: var(--lightgray);
   cursor: pointer;
+}
+
+.img-container span {
+  cursor: pointer;
+  margin-right: 5px !important;
 }

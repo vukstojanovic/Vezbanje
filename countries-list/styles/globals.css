@@ -19,12 +19,25 @@ a {
 
 :root {
   --white: #ffffff;
+  --whiteContent: #ffffff;
   --greenblue: #21b6b7;
   --navy: #124a63;
   --lightgray: #b9c9d1;
   --dark: #333333;
   --black: #000000;
   --verylightgray: #e0e0e0;
+  --lightblue: #eef3f6;
+  --darkTheme: #252329;
+  --darkContent: #3c393f;
+}
+
+[data-theme="dark"] {
+  --white: #252329;
+  --lightblue: #3c393f;
+  --whiteContent: #3c393f;
+  --navy: #ffffff;
+  --dark: #ffffff;
+  --black: #ffffff;
 }
 
 .container {
@@ -33,4 +46,5 @@ a {
   /* display: flex;
   flex-direction: column; */
   padding-bottom: 63px;
+  background-color: var(--white);
 }
