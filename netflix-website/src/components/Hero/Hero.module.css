@@ -1,0 +1,67 @@
+.hero {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  padding: 0px 30px;
+}
+
+.heading {
+  margin-top: 180px;
+  color: var(--headingColor);
+  font-size: 70px;
+  text-shadow: 6px 6px 15px black;
+  margin-bottom: 10px;
+  max-width: 1200px;
+}
+
+.description {
+  max-width: 400px;
+  min-height: 88px;
+  color: var(--descriptionColor);
+  font-weight: 700;
+  font-size: 17px;
+  word-spacing: 4px;
+  margin-bottom: 20px;
+  word-break: break-word;
+  text-align: justify;
+}
+
+.buttons {
+  margin-bottom: 50px;
+  display: flex;
+}
+
+.buttons button {
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  margin-right: 12px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 17px;
+  transition: all 0.2s ease-in-out;
+}
+
+.play {
+  background-color: var(--playBtnBackgroundColor);
+  color: var(--playBtnTextColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play span {
+  margin-left: 10px;
+}
+
+.my-list {
+  background-color: var(--myListBtnBackgroundColor);
+  color: var(--myListBtnTextColor);
+}
+
+.my-list:hover {
+  background-color: var(--playBtnBackgroundColor);
+  color: var(--playBtnTextColor);
+}
