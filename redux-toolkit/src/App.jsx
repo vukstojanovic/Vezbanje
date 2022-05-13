@@ -4,10 +4,11 @@ import {
   increment,
   decrement,
   incrementByAmount,
+  countSelector,
 } from "./redux/reducers/counterReducer";
 
 function App() {
-  const count = useSelector((state) => state.counter.count);
+  const count = useSelector(countSelector);
   const dispatch = useDispatch();
   return (
     <div className="App">
