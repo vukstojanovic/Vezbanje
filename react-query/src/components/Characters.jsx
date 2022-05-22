@@ -8,9 +8,11 @@ export default function Characters() {
     data,
     status,
     isLoading,
+    isFetching,
     isError,
     isSuccess: isSuccessChanged,
-  } = useQuery(["characters", page], fetchCharacters);
+    refetch,
+  } = useQuery(["characters", page], fetchCharacters, { enabled: false });
 
   async function fetchCharacters({ queryKey }) {
     const response = await axios.get(
@@ -21,7 +23,7 @@ export default function Characters() {
 
   return (
     <Fragment>
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading || (isFetching && <h1>Loading...</h1>)}
       {isError && <h1>Error.</h1>}
       {isSuccessChanged && (
         <ul>
@@ -32,6 +34,7 @@ export default function Characters() {
         </ul>
       )}
       <button onClick={() => setPage((prev) => prev + 1)}>Next</button>
+      <button onClick={refetch}>Fetch data</button>
     </Fragment>
   );
 }
