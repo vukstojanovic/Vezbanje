@@ -60,3 +60,7 @@ form {
   left: 50%;
   transform: translate(-50%, -25%);
 }
+
+.gray {
+  background-color: gray;
+}
