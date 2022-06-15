@@ -2,17 +2,15 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function SearchComponent() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({});
   const [value, setValue] = useState("");
 
   function search(e) {
     e.preventDefault();
     if (value) {
-      searchParams.set("search", value);
-      setSearchParams(searchParams);
+      setSearchParams({ search: value });
     } else {
-      searchParams.delete("search");
-      setSearchParams(searchParams);
+      setSearchParams({});
     }
   }
 

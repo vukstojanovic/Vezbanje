@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function ListComponent() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({});
   const colors = ["red", "blue", "green", "violet", "yellow"];
 
   function filterBySearch(arr) {
