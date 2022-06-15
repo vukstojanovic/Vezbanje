@@ -2,6 +2,8 @@ import "./App.css";
 import Select from "react-select";
 import { useState } from "react";
 import FormComponent from "./FormComponent";
+import PageComponent from "./PageComponent";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const options = [
@@ -46,11 +48,16 @@ function App() {
         />
       </div>
       <select name="" id="">
-        <option value="raect">React</option>
+        <option value="react">React</option>
         <option value="javascript">Javascript</option>
         <option value="html">Html</option>
       </select>
-      <FormComponent />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<PageComponent />} />
+          {/* <FormComponent /> */}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
