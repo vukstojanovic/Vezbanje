@@ -1,0 +1,63 @@
+import { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import todosServices from "../axios/services";
+import TodoElement from "./TodoElement";
+
+function TodoPage() {
+  const [inputValue, setInputValue] = useState("");
+  const queryClient = useQueryClient();
+  const {
+    data: todos,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useQuery("todos", () => todosServices.getTodos(), {
+    select: (data) => data.sort((a, b) => (b.id > a.id ? 1 : -1)),
+  });
+  const addTodoMutation = useMutation(todosServices.addTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    },
+  });
+
+  function addNewTodo() {
+    const newDate = new Date();
+    const newTodo = {
+      completed: false,
+      id: newDate.getTime(),
+      title: inputValue,
+      userId: 1,
+    };
+    addTodoMutation.mutate(newTodo);
+  }
+
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (isError) {
+    return <h2>Whoops Error : (</h2>;
+  }
+
+  return (
+    <div className="todoPage">
+      <h1>Todo page</h1>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <button onClick={addNewTodo}>Add new todo</button>
+      {isSuccess && (
+        <div>
+          {todos.map((todo) => {
+            const { title, id } = todo;
+            return <TodoElement key={id} id={id} title={title} />;
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default TodoPage;
