@@ -15,9 +15,19 @@ function TodoPage() {
     select: (data) => data.sort((a, b) => (b.id > a.id ? 1 : -1)),
   });
   const addTodoMutation = useMutation(todosServices.addTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+    onSuccess: (newTodo) => {
+      // queryClient.invalidateQueries("todos");
+      queryClient.setQueryData("todos", (oldTodos) => {
+        return [...oldTodos, newTodo];
+      });
     },
+    // onMutate: async (newTodo) => {
+    //   await queryClient.cancelQueries('todos');
+    //   const previousTodos = queryClient.getQueryData('todos');
+    // },
+    // onError: (_error, _newTodo, context) => {
+    //   queryClient.setQueryData("todos", context.previousTodos);
+    // },
   });
 
   function addNewTodo() {

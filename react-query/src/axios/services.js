@@ -7,8 +7,8 @@ const todosServices = {
   },
   async addTodo(todo) {
     const res = await axiosInstance.post("/todos", todo);
-    console.log(res, "post response");
-    return res;
+    console.log(res.data, "post response");
+    return res.data;
   },
   async removeTodo(id) {
     const res = await axiosInstance.delete(`/todos/${id}`);

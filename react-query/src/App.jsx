@@ -1,5 +1,5 @@
 import "./App.css";
-// import Characters from "./components/Characters";
+import Characters from "./components/Characters";
 import TodoPage from "./components/TodoPage";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";

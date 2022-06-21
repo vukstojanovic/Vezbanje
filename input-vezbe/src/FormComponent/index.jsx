@@ -28,8 +28,9 @@ function FormComponent() {
   }
 
   const options = [
-    { label: "male", value: "male" },
-    { label: "female", value: "female" },
+    { label: "red", value: "red" },
+    { label: "blue", value: "blue" },
+    { label: "green", value: "green" },
   ];
 
   return (
@@ -110,6 +111,8 @@ function FormComponent() {
         value="yes"
         id="developer"
       />
+
+      <Select options={options} isMulti />
 
       <button>Submit data</button>
     </form>

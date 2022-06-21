@@ -41,6 +41,7 @@ function App() {
       React Select Tutorial
       <div className="gray">
         <Select
+          isMulti
           defaultValue={startOption}
           styles={customStyles}
           onChange={(value) => setSelectedOption(value)}
