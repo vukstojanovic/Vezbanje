@@ -15,6 +15,6 @@ const themeStore = (set) => ({
 });
 
 const usePeopleStore = create(devtools(peopleStore));
-const useThemeStore = create(persist(devtools(themeStore)));
+const useThemeStore = create(persist(devtools(themeStore), { name: "user" }));
 
 export { usePeopleStore, useThemeStore };
