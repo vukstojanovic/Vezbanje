@@ -1,22 +1,47 @@
-import logo from "./logo.svg";
 import "./App.css";
-import MainHeader from "./components/MainHeader";
 import Welcome from "./components/Welcome";
-import Products from "./components/Products";
-import ProductDetail from "./components/ProductDetail";
 import Layout from "./components/Layout";
 import Technologies from "./components/Technologies";
 import Employees from "./components/Employees";
 import ProjectsPage from "./components/ProjectsPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useRoutes, Outlet } from "react-router-dom";
 
 function App() {
+  const routeElement = useRoutes([
+    {
+      path: "/",
+      element: <div>Welcome!!!!</div>,
+    },
+    {
+      path: "/home",
+      element: (
+        <div>
+          <b>Home</b>
+          <Outlet />
+        </div>
+      ),
+      children: [
+        { path: "one", element: <div>One</div> },
+        { path: "two", element: <div>Two</div> },
+      ],
+    },
+    {
+      path: "/about",
+      element: (
+        <div>
+          <b>About</b>
+        </div>
+      ),
+    },
+  ]);
+
   return (
     <div className="App">
       {/* <MainHeader /> */}
       <main>
-        <Routes>
+        {routeElement}
+        {/* <Routes>
           <Route path="/welcome" element={<Welcome />} />
           <Route element={<Layout />}>
             <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
@@ -31,21 +56,8 @@ function App() {
               <Route path="/projects" element={<ProjectsPage />} />
             </Route>
           </Route>
-        </Routes>
+        </Routes> */}
       </main>
-      {/* <main>
-        <Routes>
-          <Route path="/welcome" element={<Welcome />}>
-            <Route
-              path="new-article"
-              element={<p>The new article spawned!!!</p>}
-            />
-          </Route>
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/hello" element={<Navigate to="/welcome" />} />
-        </Routes>
-      </main> */}
     </div>
   );
 }
