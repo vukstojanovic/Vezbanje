@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import Header from "../components/Header";
 
 const Home: NextPage = () => {
@@ -12,6 +13,14 @@ const Home: NextPage = () => {
       </Head>
 
       <h1>Lets build Hulu 2.0</h1>
+      <ul>
+        <li>
+          <Link href="/dashboard">Dashboard page</Link>
+        </li>
+        <li>
+          <Link href="/users">Users page</Link>
+        </li>
+      </ul>
       <Header />
     </div>
   );
