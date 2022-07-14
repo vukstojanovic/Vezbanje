@@ -71,7 +71,7 @@ function App() {
 
   return (
     <>
-      <Menu>
+      {/* <Menu>
         <Menu.SubMenu
           title="Sub menu"
           style={{ background: "red", width: "50%" }}
@@ -81,12 +81,25 @@ function App() {
           <Menu.Item>item 4</Menu.Item>
           <Menu.Item>item 5</Menu.Item>
         </Menu.SubMenu>
-      </Menu>
-      {/* <Dropdown overlay={menu} trigger={["click"]}>
-        <a onClick={(e) => e.preventDefault()}>
-          <Space>Hover me</Space>
-        </a>
-      </Dropdown> */}
+      </Menu> */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          background: "red",
+        }}
+      >
+        <Dropdown overlay={menu} trigger={["click"]}>
+          <a onClick={(e) => e.preventDefault()}>
+            <Space>Hover me</Space>
+          </a>
+        </Dropdown>
+        <Dropdown overlay={menu} trigger={["click"]}>
+          <a onClick={(e) => e.preventDefault()}>
+            <Space style={{ marginRight: "50px" }}>Hover me</Space>
+          </a>
+        </Dropdown>
+      </div>
       {/* <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
         <Col span={12}>
           <Form
