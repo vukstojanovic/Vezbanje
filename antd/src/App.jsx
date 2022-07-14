@@ -71,11 +71,22 @@ function App() {
 
   return (
     <>
-      <Dropdown overlay={menu} trigger={["click"]}>
+      <Menu>
+        <Menu.SubMenu
+          title="Sub menu"
+          style={{ background: "red", width: "50%" }}
+          mode="horizontal"
+        >
+          <Menu.Item>item 3</Menu.Item>
+          <Menu.Item>item 4</Menu.Item>
+          <Menu.Item>item 5</Menu.Item>
+        </Menu.SubMenu>
+      </Menu>
+      {/* <Dropdown overlay={menu} trigger={["click"]}>
         <a onClick={(e) => e.preventDefault()}>
           <Space>Hover me</Space>
         </a>
-      </Dropdown>
+      </Dropdown> */}
       {/* <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
         <Col span={12}>
           <Form
