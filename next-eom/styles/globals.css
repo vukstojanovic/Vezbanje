@@ -20,3 +20,19 @@ a {
   flex-direction: column;
   min-height: 100vh;
 }
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 15px;
+}
+
+.card {
+  padding: 20px;
+  margin: 15px 0px;
+  border-radius: 10px;
+  background-color: rgb(110, 10, 10);
+  color: gold;
+  box-shadow: 15px 15px 30px rgb(168, 163, 163);
+}
