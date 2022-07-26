@@ -11,9 +11,29 @@ function TodoPage() {
     isLoading,
     isError,
     isSuccess,
-  } = useQuery("todos", () => todosServices.getTodos(), {
-    select: (data) => data.sort((a, b) => (b.id > a.id ? 1 : -1)),
-  });
+  } = useQuery(
+    "todos",
+    () => todosServices.getTodos(),
+    // {
+    //   select: (data) => data.sort((a, b) => (b.id > a.id ? 1 : -1)),
+    // },
+    {
+      initialData: [
+        {
+          userId: 1,
+          id: 1,
+          title: "First one",
+          completed: false,
+        },
+        {
+          userId: 1,
+          id: 3,
+          title: "Second one",
+          completed: true,
+        },
+      ],
+    }
+  );
   const addTodoMutation = useMutation(todosServices.addTodo, {
     onSuccess: (newTodo) => {
       // queryClient.invalidateQueries("todos");
@@ -41,13 +61,13 @@ function TodoPage() {
     addTodoMutation.mutate(newTodo);
   }
 
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
+  // if (isLoading) {
+  //   return <h2>Loading...</h2>;
+  // }
 
-  if (isError) {
-    return <h2>Whoops Error : (</h2>;
-  }
+  // if (isError) {
+  //   return <h2>Whoops Error : (</h2>;
+  // }
 
   return (
     <div className="todoPage">

@@ -5,18 +5,21 @@ import {
   QueryClientProvider,
   Hydrate,
 } from "@tanstack/react-query";
+import { NextContextProvider } from "../context";
 
 function MyApp({ Component, pageProps }) {
   const newClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={newClient}>
-      {/* <Hydrate state={pageProps.dehydratedState}> */}
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-      {/* </Hydrate> */}
-    </QueryClientProvider>
+    <NextContextProvider>
+      <QueryClientProvider client={newClient}>
+        {/* <Hydrate state={pageProps.dehydratedState}> */}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+        {/* </Hydrate> */}
+      </QueryClientProvider>
+    </NextContextProvider>
   );
 }
 
