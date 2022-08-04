@@ -1,0 +1,39 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Buy oranges",
+      "description": "Lorem ispum dolor sit amet consecitur elit..."
+    },
+    {
+      "id": 2,
+      "title": "Buy apples",
+      "description": "Lorem ispum dolor sit amet consecitur elit..."
+    },
+    {
+      "id": 3,
+      "title": "Buy bananas",
+      "description": "Lorem ispum dolor sit amet consecitur elit..."
+    },
+    {
+      "id": 4,
+      "title": "Buy melons",
+      "description": "Lorem ispum dolor sit amet consecitur elit..."
+    },
+    {
+      "title": "Buy chocolate",
+      "description": "Hello there",
+      "id": 5
+    },
+    {
+      "title": "Buy chocolate",
+      "description": "Hello there",
+      "id": 6
+    },
+    {
+      "title": "Buy strawberry",
+      "description": "with cream",
+      "id": 7
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import styles from "./Form.module.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import ReactStars from "react-rating-stars-component";
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -31,6 +32,10 @@ export default function Form() {
   function submitForm(data) {
     alert("Submitted successfully, check console log for data object.");
     console.log(data);
+  }
+
+  function ratingChange(newRating) {
+    console.log(newRating);
   }
 
   return (
@@ -82,6 +87,14 @@ export default function Form() {
           />
           <p>{errors.confirmPassword && "Passwords should match!"}</p>
         </div>
+        <ReactStars
+          count={5}
+          size={25}
+          activeColor="#ffd700"
+          name={"stars"}
+          // onChange={ratingChange}
+          {...register("stars")}
+        />
         <input type="submit" id="submit" />
       </form>
     </div>

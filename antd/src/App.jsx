@@ -8,104 +8,35 @@ import {
   DatePicker,
   Checkbox,
   Button,
-  Dropdown,
-  Space,
-  Menu,
 } from "antd";
 import "antd/dist/antd.css";
+import { useEffect, useState } from "react";
 
 function App() {
   function handleFinish(value) {
     console.log(value);
   }
 
-  const menu = (
-    <Menu
-      items={[
-        {
-          key: "1",
-          label: (
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.antgroup.com"
-            >
-              1st menu item
-            </a>
-          ),
-        },
-        {
-          key: "2",
-          label: (
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.aliyun.com"
-            >
-              2nd menu item (disabled)
-            </a>
-          ),
-          disabled: true,
-        },
-        {
-          key: "3",
-          label: (
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.luohanacademy.com"
-            >
-              3rd menu item (disabled)
-            </a>
-          ),
-          disabled: true,
-        },
-        {
-          key: "4",
-          danger: true,
-          label: "a danger item",
-        },
-      ]}
-    />
-  );
+  const [form] = Form.useForm();
+  const [hasErrors, setHasErrors] = useState(false);
+
+  function handleFormChange() {
+    const someErrors = form
+      .getFieldsError()
+      .some(({ errors }) => errors.length);
+    setHasErrors(someErrors);
+  }
 
   return (
     <>
-      {/* <Menu>
-        <Menu.SubMenu
-          title="Sub menu"
-          style={{ background: "red", width: "50%" }}
-          mode="horizontal"
-        >
-          <Menu.Item>item 3</Menu.Item>
-          <Menu.Item>item 4</Menu.Item>
-          <Menu.Item>item 5</Menu.Item>
-        </Menu.SubMenu>
-      </Menu> */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          background: "red",
-        }}
-      >
-        <Dropdown overlay={menu} trigger={["click"]}>
-          <a onClick={(e) => e.preventDefault()}>
-            <Space>Hover me</Space>
-          </a>
-        </Dropdown>
-        <Dropdown overlay={menu} trigger={["click"]}>
-          <a onClick={(e) => e.preventDefault()}>
-            <Space style={{ marginRight: "50px" }}>Hover me</Space>
-          </a>
-        </Dropdown>
-      </div>
-      {/* <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
+      <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
         <Col span={12}>
           <Form
             labelCol={{ span: 5 }}
             wrapperCol={{ span: 19 }}
             onFinish={handleFinish}
+            onFieldsChange={handleFormChange}
+            form={form}
           >
             <Form.Item
               name="username"
@@ -177,19 +108,32 @@ function App() {
             <Form.Item name="website" label="Website">
               <Input placeholder="Enter your website url..." />
             </Form.Item>
-            <Form.Item name="agreement" wrapperCol={{ span: 19, offset: 5 }}>
+            <Form.Item
+              name="agreement"
+              wrapperCol={{ span: 19, offset: 5 }}
+              valuePropName="checked"
+            >
               <Checkbox>
                 Agree to our <a>terms and conditons</a>
               </Checkbox>
             </Form.Item>
-            <Form.Item name="agreement" wrapperCol={{ span: 19, offset: 5 }}>
-              <Button block type="primary" htmlType="submit">
+            <Form.Item
+              name="agreement"
+              wrapperCol={{ span: 19, offset: 5 }}
+              shouldUpdate
+            >
+              <Button
+                block
+                type="primary"
+                htmlType="submit"
+                disabled={hasErrors}
+              >
                 Register
               </Button>
             </Form.Item>
           </Form>
         </Col>
-      </Row> */}
+      </Row>
     </>
   );
 }
