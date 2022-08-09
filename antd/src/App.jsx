@@ -63,7 +63,7 @@ function App() {
               name="password"
               label="Password"
               rules={[
-                { required: true, message: "Please enter your password" },
+                // { required: true, message: "Please enter your password" },
                 { min: 6, max: 20 },
               ]}
               hasFeedback
@@ -74,10 +74,18 @@ function App() {
               name="confirmPassword"
               label="Confirm Password"
               rules={[
-                { required: true, message: "Please confirm your password" },
+                ({ getFieldValue }) => ({
+                  required: !!getFieldValue("password"),
+                  message: "Please confirm your password",
+                }),
+                // { required: true, message: "Please confirm your password" },
                 ({ getFieldValue }) => ({
                   validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
+                    if (
+                      !value ||
+                      getFieldValue("password") === value ||
+                      !getFieldValue("password")
+                    ) {
                       return Promise.resolve();
                     } else {
                       return Promise.reject(
