@@ -5,11 +5,26 @@ import Technologies from "./components/Technologies";
 import Employees from "./components/Employees";
 import ProjectsPage from "./components/ProjectsPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import { Routes, Route, Navigate, useRoutes, Outlet } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useRoutes,
+  Outlet,
+  useSearchParams,
+} from "react-router-dom";
 import { useState } from "react";
 
 function App() {
   const [season, setSeason] = useState("duck");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function searchName() {
+    setSearchParams({});
+    setSearchParams({ name: "Bojan" });
+    setSearchParams({ name: "Danica" });
+  }
+
   const duckRoutes = [
     {
       path: "/ducks",
@@ -70,6 +85,7 @@ function App() {
       {/* <MainHeader /> */}
       <header>
         <button onClick={changeSeason}>{season} season!!!</button>
+        <button onClick={searchName}>Search name</button>
       </header>
       <main>
         {routeElement}

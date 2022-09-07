@@ -8,17 +8,30 @@ import {
   DatePicker,
   Checkbox,
   Button,
+  Upload,
 } from "antd";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { getBase64 } from "./utils/getBase64";
+import { beforeUpload } from "./utils/beforeImageUpload";
 
 function App() {
-  function handleFinish(value) {
-    console.log(value);
-  }
-
   const [form] = Form.useForm();
   const [hasErrors, setHasErrors] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [changedFields, setChangedFields] = useState({});
+
+  function handleFinish(value) {
+    console.log(value);
+    console.log(changedFields);
+    setChangedFields({});
+  }
+
+  function handleValuesChange(ch) {
+    console.log(ch);
+    setChangedFields((prev) => ({ ...prev, ...ch }));
+  }
 
   function handleFormChange() {
     const someErrors = form
@@ -26,6 +39,25 @@ function App() {
       .some(({ errors }) => errors.length);
     setHasErrors(someErrors);
   }
+
+  const handleChange = (info) => {
+    getBase64(info.file.originFileObj, () => {
+      setLoading(false);
+    });
+  };
+
+  const uploadButton = (
+    <div>
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -36,25 +68,20 @@ function App() {
             wrapperCol={{ span: 19 }}
             onFinish={handleFinish}
             onFieldsChange={handleFormChange}
+            onValuesChange={handleValuesChange}
             form={form}
+            initialValues={{
+              username: "Vuk",
+              password: "user",
+            }}
           >
-            <Form.Item
-              name="username"
-              label="Username"
-              rules={[
-                { required: true, message: "Please enter your username" },
-              ]}
-              hasFeedback
-            >
+            <Form.Item name="username" label="Username">
               <Input placeholder="Enter your username..." />
             </Form.Item>
             <Form.Item
               name="email"
               label="Email"
-              rules={[
-                { required: true, message: "Please enter your email" },
-                { type: "email" },
-              ]}
+              rules={[{ type: "email" }]}
               hasFeedback
             >
               <Input placeholder="Enter your email..." />
@@ -62,10 +89,7 @@ function App() {
             <Form.Item
               name="password"
               label="Password"
-              rules={[
-                // { required: true, message: "Please enter your password" },
-                { min: 6, max: 20 },
-              ]}
+              rules={[{ max: 20 }]}
               hasFeedback
             >
               <Input.Password placeholder="Enter your password..." />
@@ -100,11 +124,7 @@ function App() {
             >
               <Input.Password placeholder="Confirm your password..." />
             </Form.Item>
-            <Form.Item
-              name="gender"
-              label="Gender"
-              rules={[{ required: true, message: "Please select your gender" }]}
-            >
+            <Form.Item name="gender" label="Gender">
               <Select placeholder="Select your gender...">
                 <Select.Option value="male">Male</Select.Option>
                 <Select.Option value="female">Female</Select.Option>
@@ -125,6 +145,40 @@ function App() {
                 Agree to our <a>terms and conditons</a>
               </Checkbox>
             </Form.Item>
+
+            <Form.Item
+              label="Profile Photo:"
+              valuePropName="file"
+              name="profilePhoto"
+              getValueFromEvent={(e) => {
+                if (Array.isArray(e)) {
+                  return e;
+                }
+                console.log(e);
+                return e && e.file;
+              }}
+            >
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                showUploadList={(true, { showPreviewIcon: false })}
+                beforeUpload={beforeUpload}
+                onChange={handleChange}
+                maxCount={1}
+                action="UploadUrl"
+                defaultFileList={[
+                  {
+                    uid: "-1",
+                    name: "image",
+                    status: "done",
+                    url: "https://boi-files.s3.eu-central-1.amazonaws.com/1660386624939.jpg",
+                  },
+                ]}
+              >
+                {uploadButton}
+              </Upload>
+            </Form.Item>
+
             <Form.Item
               name="agreement"
               wrapperCol={{ span: 19, offset: 5 }}
