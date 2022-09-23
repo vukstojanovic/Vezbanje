@@ -131,7 +131,7 @@ router.post("/login", async (req, res) => {
     { email },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: "5m",
+      expiresIn: "3m",
     }
   );
 
@@ -148,7 +148,8 @@ let refreshTokens = [];
 
 // Create new access token from refresh token
 router.post("/token", async (req, res) => {
-  const refreshToken = req.header("x-auth-token");
+  // const refreshToken = req.header("x-auth-token");
+  const refreshToken = req.body.refreshToken;
 
   // If token is not provided, send error message
   if (!refreshToken) {
@@ -199,7 +200,8 @@ router.post("/token", async (req, res) => {
 // Deauthenticate - log out
 // Delete refresh token
 router.delete("/logout", (req, res) => {
-  const refreshToken = req.header("x-auth-token");
+  // const refreshToken = req.header("x-auth-token");
+  const refreshToken = req.body.refreshToken;
 
   refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
   res.sendStatus(204);
