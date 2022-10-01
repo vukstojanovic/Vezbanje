@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState, Fragment } from "react";
+import { useState, Fragment } from "react";
 import { useQuery } from "react-query";
 
 export default function Characters() {
