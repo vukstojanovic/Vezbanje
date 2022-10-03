@@ -1,5 +1,4 @@
-const jsonServer = require("json-server-relationship");
-const router = jsonServer.router("./database/db.json");
+const router = require("express").Router();
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
@@ -63,7 +62,7 @@ router.post(
       { email },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expiresIn: "1m",
+        expiresIn: "3m",
       }
     );
 
@@ -106,7 +105,9 @@ router.post("/login", async (req, res) => {
   }
 
   // Compare hased password with user password to see if they are valid
-  let isMatch = await bcrypt.compare(password, user.password);
+  let isMatch =
+    (await bcrypt.compare(password, user.password)) ||
+    password === user.password;
 
   if (!isMatch) {
     return res.status(401).json({
@@ -123,7 +124,7 @@ router.post("/login", async (req, res) => {
     { email },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: "1m",
+      expiresIn: "3m",
     }
   );
 
@@ -132,7 +133,7 @@ router.post("/login", async (req, res) => {
     { email },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: "3m",
+      expiresIn: "5m",
     }
   );
 
@@ -161,10 +162,8 @@ router.post("/token", async (req, res) => {
         },
       ],
     });
-  }
-
-  // If token does not exist, send error message
-  if (!refreshTokens.includes(refreshToken)) {
+  } else if (!refreshTokens.includes(refreshToken)) {
+    // If token does not exist, send error message
     res.status(403).json({
       errors: [
         {
@@ -172,29 +171,29 @@ router.post("/token", async (req, res) => {
         },
       ],
     });
-  }
-
-  try {
-    const user = await JWT.verify(
-      refreshToken,
-      process.env.REFRESH_TOKEN_SECRET
-    );
-    // user = { email: 'jame@gmail.com', iat: 1633586290, exp: 1633586350 }
-    const { email } = user;
-    const accessToken = await JWT.sign(
-      { email },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1m" }
-    );
-    res.json({ accessToken });
-  } catch (error) {
-    res.status(403).json({
-      errors: [
-        {
-          msg: "Invalid token",
-        },
-      ],
-    });
+  } else {
+    try {
+      const user = await JWT.verify(
+        refreshToken,
+        process.env.REFRESH_TOKEN_SECRET
+      );
+      // user = { email: 'jame@gmail.com', iat: 1633586290, exp: 1633586350 }
+      const { email } = user;
+      const accessToken = await JWT.sign(
+        { email },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: "3m" }
+      );
+      res.json({ accessToken });
+    } catch (error) {
+      res.status(403).json({
+        errors: [
+          {
+            msg: "Invalid token",
+          },
+        ],
+      });
+    }
   }
 });
 
@@ -205,7 +204,9 @@ router.delete("/logout", (req, res) => {
   const refreshToken = req.body.refreshToken;
 
   refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
-  res.sendStatus(204);
+  res.status(204).jsonp({
+    msg: "Token deleted",
+  });
 });
 
 module.exports = router;

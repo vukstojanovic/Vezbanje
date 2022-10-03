@@ -3,14 +3,13 @@ const server = jsonServer.create();
 const router = jsonServer.router("./database/db.json");
 const middlewares = jsonServer.defaults();
 const authToken = require("./middleware/authenticateToken");
-const { users } = require("./users");
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares);
 
 // Add custom routes before JSON Server router
-server.get("/echo", (req, res) => {
-  res.jsonp(users);
+server.use("/echo", (req, res) => {
+  res.json([{ mechandise: "suitcase", price: "25$" }]);
 });
 
 // To handle POST, PUT and PATCH you need to use a body-parser
