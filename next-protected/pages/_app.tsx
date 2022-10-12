@@ -21,7 +21,6 @@ function MyApp({ Component, pageProps }: WithRequireAuth) {
         ) : (
           <Component {...pageProps} />
         )}
-        {/* <Component {...pageProps} /> */}
       </PageContainer>
     </>
   );

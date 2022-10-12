@@ -4,6 +4,12 @@ const router = jsonServer.router("./database/db.json");
 const middlewares = jsonServer.defaults();
 const authToken = require("./middleware/authenticateToken");
 
+// const express = require("express");
+// const cors = require("cors");
+// const app = express();
+// app.use(express.json());
+// app.use(cors());
+
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares);
 
@@ -17,9 +23,10 @@ server.use("/echo", (req, res) => {
 server.use(jsonServer.bodyParser);
 server.use("/auth", require("./routes/auth"));
 server.use("/hello", authToken, router);
+server.use("/user", authToken, require("./routes/me"));
 
 // Use default router
 // server.use(router);
-server.listen(3000, () => {
-  console.log("JSON Server is running on port 3000");
+server.listen(4000, () => {
+  console.log("JSON Server is running on port 4000");
 });

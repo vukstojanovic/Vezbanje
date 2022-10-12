@@ -10,6 +10,7 @@ export default function Characters() {
     isLoading,
     isFetching,
     isError,
+    error,
     isSuccess: isSuccessChanged,
     refetch,
   } = useQuery(["characters", page], fetchCharacters);
@@ -19,6 +20,10 @@ export default function Characters() {
       `https://rickandmortyapi.com/api/character?page=${queryKey[1]}`
     );
     return response.data.results;
+  }
+
+  if (isError) {
+    return <div>{error.message}</div>;
   }
 
   return (

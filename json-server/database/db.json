@@ -19,6 +19,21 @@
       "name": "Petar",
       "title": "Chimneysweeper",
       "id": 4
+    },
+    {
+      "name": "Mitar",
+      "title": "Chimneysweeper",
+      "id": 5
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Fotelja"
+    },
+    {
+      "id": 2,
+      "name": "Stolica"
     }
   ]
 }
