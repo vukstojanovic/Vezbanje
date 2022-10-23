@@ -1,0 +1,18 @@
+import { axiosInstance } from "../../../config";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { queryConstants } from "../../../constants";
+
+async function signupUser(data) {
+  return axiosInstance.post("/auth/signup", data);
+}
+
+export default function useSignupMutation() {
+  //   const queryClient = useQueryClient();
+
+  return useMutation(signupUser, {
+    onSuccess: (data) => {
+      localStorage.setItem("accessToken", data.data.accessToken);
+    },
+    onError: (err) => console.log(err),
+  });
+}

@@ -22,7 +22,7 @@ server.use("/echo", (req, res) => {
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser);
 server.use("/auth", require("./routes/auth"));
-server.use("/hello", authToken, router);
+server.use("/protected", authToken, router);
 server.use("/user", authToken, require("./routes/me"));
 
 // Use default router

@@ -3,7 +3,7 @@ import { protectedRoutes } from "./routes/protected";
 import { publicRoutes } from "./routes/public";
 
 function App() {
-  const routes = "islogged" ? protectedRoutes : publicRoutes;
+  const routes = "" ? protectedRoutes : publicRoutes;
   const element = useRoutes(routes);
   return element;
 }

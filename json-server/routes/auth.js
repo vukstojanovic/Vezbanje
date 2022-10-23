@@ -133,7 +133,7 @@ router.post("/login", async (req, res) => {
     { email },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: "5m",
+      expiresIn: "6m",
     }
   );
 
