@@ -11,7 +11,9 @@ export default function useSignupMutation() {
 
   return useMutation(signupUser, {
     onSuccess: (data) => {
-      localStorage.setItem("accessToken", data.data.accessToken);
+      console.log(data);
+      if (data.data.accessToken)
+        localStorage.setItem("accessToken", data.data.accessToken);
     },
     onError: (err) => console.log(err),
   });

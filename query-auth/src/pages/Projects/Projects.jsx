@@ -1,4 +1,5 @@
 import useProjectsQuery from "./api/getProjects";
+import SingleProject from "../../components/SingleProject/SingleProject";
 
 export default function Projects() {
   const { data, isLoading, isError, error } = useProjectsQuery();
@@ -7,5 +8,13 @@ export default function Projects() {
 
   if (isError) return <h1 className="text-xl">{error.message}</h1>;
 
-  return <div>Projects</div>;
+  return (
+    <div>
+      {data &&
+        data.data.map((project) => {
+          const { name, id } = project;
+          return <SingleProject key={id} name={name} />;
+        })}
+    </div>
+  );
 }

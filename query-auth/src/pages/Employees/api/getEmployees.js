@@ -1,5 +1,5 @@
 import { axiosInstance } from "../../../config";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { queryConstants } from "../../../constants";
 
 async function getEmployees() {
@@ -7,5 +7,9 @@ async function getEmployees() {
 }
 
 export default function useEmployeesQuery() {
-  return useQuery([queryConstants.EMPLOYEES], getEmployees);
+  const queryClient = useQueryClient();
+
+  return useQuery([queryConstants.EMPLOYEES], getEmployees, {
+    onError: () => queryClient.invalidateQueries([queryConstants.ME]),
+  });
 }

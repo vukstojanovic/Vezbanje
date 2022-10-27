@@ -1,4 +1,5 @@
 import useProductsQuery from "./api/getProducts";
+import SingleProduct from "../../components/SingleProduct/SingleProduct";
 
 export default function Products() {
   const { data, isLoading, isError, error } = useProductsQuery();
@@ -7,5 +8,13 @@ export default function Products() {
 
   if (isError) return <h1 className="text-xl">{error.message}</h1>;
 
-  return <div>Products</div>;
+  return (
+    <div>
+      {data &&
+        data.data.map((product) => {
+          const { name, id } = product;
+          return <SingleProduct key={id} name={name} />;
+        })}
+    </div>
+  );
 }

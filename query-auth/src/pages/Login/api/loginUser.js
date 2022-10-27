@@ -7,12 +7,13 @@ async function loginUser(data) {
 }
 
 export default function useLoginMutation() {
-  //   const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   return useMutation(loginUser, {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.data.accessToken);
       localStorage.setItem("refreshToken", data.data.refreshToken);
+      queryClient.invalidateQueries([queryConstants.ME]);
     },
     onError: (err) => console.log(err),
   });

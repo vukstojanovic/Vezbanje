@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import RoutesLayout from "./layout";
 import Login from "../pages/Login/Login";
+import Signup from "../pages/Signup/Signup";
 
 export const publicRoutes = [
   {
@@ -11,7 +12,7 @@ export const publicRoutes = [
         path: "/login",
       },
       {
-        element: `<Signup />`,
+        element: <Signup />,
         path: "/signup",
       },
     ],

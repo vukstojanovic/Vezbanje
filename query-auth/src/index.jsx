@@ -13,7 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const queryClient = new QueryClient({ defaultOptions: queryConfig });
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
 root.render(
   <React.StrictMode>
