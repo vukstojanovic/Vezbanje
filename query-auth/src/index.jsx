@@ -6,21 +6,18 @@ import {
   BrowserRouter,
   unstable_HistoryRouter as HistoryRouter,
 } from "react-router-dom";
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 import { queryConfig } from "./query/index";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { AuthProvider } from "./providers/authProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const queryClient = new QueryClient({ defaultOptions: queryConfig });
-export const history = createBrowserHistory();
+// export const history = createBrowserHistory();
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <HistoryRouter history={history}>
-        <App />
-      </HistoryRouter>
-    </QueryClientProvider>
+    <App />
   </React.StrictMode>
 );

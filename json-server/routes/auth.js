@@ -62,7 +62,7 @@ router.post(
       { email },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expiresIn: "3m",
+        expiresIn: "2m",
       }
     );
 
@@ -124,7 +124,7 @@ router.post("/login", async (req, res) => {
     { email },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: "3m",
+      expiresIn: "2m",
     }
   );
 
@@ -133,7 +133,7 @@ router.post("/login", async (req, res) => {
     { email },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: "6m",
+      expiresIn: "5m",
     }
   );
 
@@ -182,7 +182,7 @@ router.post("/token", async (req, res) => {
       const accessToken = await JWT.sign(
         { email },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "3m" }
+        { expiresIn: "2m" }
       );
       res.json({ accessToken });
     } catch (error) {

@@ -1,15 +1,17 @@
 import { useForm } from "react-hook-form";
 import useLoginMutation from "./api/loginUser";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../providers/authProvider";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
   const loginMutation = useLoginMutation();
+  const { login } = useAuth();
 
   return (
     <div className="mx-auto mt-10 bg-gold rounded-md p-5 flex flex-col w-[350px] md:w-[700px] min-h-96">
       <h1 className="text-xl font-bold mb-6 text-center">Login</h1>
-      <form onSubmit={handleSubmit((data) => loginMutation.mutate(data))}>
+      <form onSubmit={handleSubmit((data) => login(data))}>
         <div className="mb-7 flex flex-col">
           <label className="mb-3">Email:</label>
           <input

@@ -1,5 +1,5 @@
 import { axiosInstance } from "../../../config";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { queryConstants } from "../../../constants";
 
 async function getProjects() {

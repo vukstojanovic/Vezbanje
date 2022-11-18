@@ -1,4 +1,14 @@
 {
+  "products": [
+    {
+      "id": 1,
+      "name": "Fotelja"
+    },
+    {
+      "id": 2,
+      "name": "Stolica"
+    }
+  ],
   "employees": [
     {
       "name": "Milos Ciric",
@@ -9,38 +19,16 @@
       "id": 9
     },
     {
-      "name": "Stefan Meza",
-      "id": 11
-    },
-    {
-      "name": "Vladimir Stojanovic",
-      "id": 12
-    },
-    {
-      "name": "Danilo Markicevic",
-      "id": 13
-    },
-    {
-      "name": "Nikola Markovic",
-      "id": 15
-    },
-    {
       "name": "Milos Aksentijevic",
       "id": 16
     },
     {
-      "name": "Sanja Savic",
-      "id": 17
-    }
-  ],
-  "products": [
-    {
-      "id": 1,
-      "name": "Fotelja"
+      "name": "Nina Bojic",
+      "id": 18
     },
     {
-      "id": 2,
-      "name": "Stolica"
+      "name": "Oona Chaplin",
+      "id": 19
     }
   ],
   "projects": [

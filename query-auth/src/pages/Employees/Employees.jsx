@@ -5,8 +5,13 @@ import usePostEmployeeMutation from "./api/postEmployee";
 
 export default function Employees() {
   const { data, isLoading, isError, error } = useEmployeesQuery();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const postEmployeeMutation = usePostEmployeeMutation();
+
+  function submitForm(data) {
+    postEmployeeMutation.mutate(data);
+    reset();
+  }
 
   if (isLoading) return <h1 className="text-xl">Loading ...</h1>;
 
@@ -18,7 +23,7 @@ export default function Employees() {
         <div>
           <form
             className="flex space-x-3 items-center mb-6"
-            onSubmit={handleSubmit((data) => postEmployeeMutation.mutate(data))}
+            onSubmit={handleSubmit(submitForm)}
           >
             <input
               type="text"

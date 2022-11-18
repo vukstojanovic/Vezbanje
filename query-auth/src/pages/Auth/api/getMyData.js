@@ -1,8 +1,8 @@
 import { axiosInstance } from "../../../config";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { queryConstants } from "../../../constants";
 
-async function getMyData() {
+export function getMyData() {
   return axiosInstance.get("/user/me");
 }
 

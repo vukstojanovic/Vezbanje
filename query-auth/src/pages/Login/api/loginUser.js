@@ -1,8 +1,8 @@
 import { axiosInstance } from "../../../config";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { queryConstants } from "../../../constants";
 
-async function loginUser(data) {
+export function loginUser(data) {
   return axiosInstance.post("/auth/login", data);
 }
 
