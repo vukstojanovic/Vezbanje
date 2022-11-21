@@ -12,10 +12,8 @@ export const history = createBrowserHistory();
 
 export default function AppProvider({ children }) {
   return (
-    <HistoryRouter history={history}>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>{children}</AuthProvider>
-      </QueryClientProvider>
-    </HistoryRouter>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </BrowserRouter>
   );
 }

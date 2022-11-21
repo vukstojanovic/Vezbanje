@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 // import { createBrowserHistory } from "history";
 import { queryConfig } from "./query/index";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./providers/authProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -18,6 +18,10 @@ const queryClient = new QueryClient({ defaultOptions: queryConfig });
 
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

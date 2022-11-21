@@ -5,21 +5,22 @@ import useMyDataQuery from "./pages/Auth/api/getMyData";
 import { useAuth } from "./providers/authProvider";
 import AppProvider from "./providers/appProvider";
 import AppRoutes from "./routes/index";
+import InjectInterceptors from "./components/InjectInterceptors/InjectInterceptors";
+import { useEffect, useState } from "react";
 
 function App() {
-  // const { data, isError, isLoading } = useMyDataQuery();
+  const { data, isError, isLoading } = useMyDataQuery();
+  const isAuth = !isError && !isLoading;
   // const { user } = useAuth();
 
-  // console.log(data, isError, user);
+  const routes = isAuth ? protectedRoutes : publicRoutes;
+  const element = useRoutes(routes);
 
-  // const routes = user ? protectedRoutes : publicRoutes;
-  // const element = useRoutes(routes);
-
-  // return element;
   return (
-    <AppProvider>
-      <AppRoutes />
-    </AppProvider>
+    <>
+      <InjectInterceptors />
+      {element}
+    </>
   );
 }
 

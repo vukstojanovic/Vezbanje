@@ -8,7 +8,7 @@ export default function Nav() {
   const deleteAccessTokenMutation = useDeleteAccessTokenMutation();
   const { data, isError, isLoading } = useMyDataQuery();
   const isLogged = !isError && !isLoading;
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
 
   return (
     <nav className="flex justify-between items-center text-lg m-auto max-w-6xl">
@@ -27,7 +27,7 @@ export default function Nav() {
         })}
       </div>
       <div className="flex justify-between items-center capitalize space-x-4">
-        {!user ? (
+        {!isLogged ? (
           publicLinks.map((link) => {
             const { id, name, path } = link;
             return (
@@ -41,7 +41,10 @@ export default function Nav() {
             );
           })
         ) : (
-          <span className="cursor-pointer" onClick={() => logout()}>
+          <span
+            className="cursor-pointer"
+            onClick={deleteAccessTokenMutation.mutate}
+          >
             Logout
           </span>
         )}

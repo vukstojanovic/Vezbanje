@@ -1,5 +1,5 @@
 import { axiosInstance } from "../../../config";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryConstants } from "../../../constants";
 
 export function deleteAccessToken() {
@@ -11,7 +11,11 @@ export default function useDeleteAccessTokenMutation() {
   const queryClient = useQueryClient();
 
   return useMutation(deleteAccessToken, {
-    onSuccess: () => queryClient.invalidateQueries([queryConstants.ME]),
+    onSuccess: () => {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      queryClient.invalidateQueries([queryConstants.ME]);
+    },
     onError: (err) => console.log(err),
   });
 }

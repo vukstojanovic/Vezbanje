@@ -13,7 +13,7 @@ export default function Employees() {
     reset();
   }
 
-  if (isLoading) return <h1 className="text-xl">Loading ...</h1>;
+  if (isLoading) return <h1 className="text-xl">Loading...</h1>;
 
   if (isError) return <h1 className="text-xl">{error.message}</h1>;
 

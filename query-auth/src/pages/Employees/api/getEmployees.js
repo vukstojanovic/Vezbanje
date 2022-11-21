@@ -1,5 +1,5 @@
 import { axiosInstance } from "../../../config";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { queryConstants } from "../../../constants";
 
 async function getEmployees() {
