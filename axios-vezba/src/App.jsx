@@ -1,7 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Test from "./Test";
 
 function App() {
   // const axiosInstance = axios.create({
@@ -198,16 +198,17 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <button onClick={login}>Login</button>
-      <button onClick={getProjects}>Get projects</button>
-      <ul>
-        {dataList.map((obj) => {
-          const { id, createdAt } = obj;
-          return <li key={id}>{createdAt}</li>;
-        })}
-      </ul>
-    </div>
+    // <div className="App">
+    //   <button onClick={login}>Login</button>
+    //   <button onClick={getProjects}>Get projects</button>
+    //   <ul>
+    //     {dataList.map((obj) => {
+    //       const { id, createdAt } = obj;
+    //       return <li key={id}>{createdAt}</li>;
+    //     })}
+    //   </ul>
+    // </div>
+    <Test />
   );
 }
 

@@ -9,7 +9,10 @@ import {
 // import { createBrowserHistory } from "history";
 import { queryConfig } from "./query/index";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AuthProvider } from "./providers/authProvider";
+// import { AuthProvider } from "./providers/authProvider";
+import AuthContextProvider from "./providers/authProviderTwo";
+import { HelmetProvider } from "react-helmet-async";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -18,10 +21,15 @@ const queryClient = new QueryClient({ defaultOptions: queryConfig });
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools />
+          {/* <AuthContextProvider> */}
+          <App />
+          {/* </AuthContextProvider> */}
+        </QueryClientProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>
 );

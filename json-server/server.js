@@ -15,7 +15,26 @@ server.use(middlewares);
 
 // Add custom routes before JSON Server router
 server.use("/echo", (req, res) => {
-  res.json([{ mechandise: "suitcase", price: "25$" }]);
+  res.json({
+    employees: [
+      {
+        name: "Milos Ciric",
+        id: 8,
+      },
+      {
+        name: "Milos Aksentijevic",
+        id: 16,
+      },
+      {
+        name: "Oona Chaplin",
+        id: 19,
+      },
+      {
+        name: "Vuk Stojanovic",
+        id: 20,
+      },
+    ],
+  });
 });
 
 // To handle POST, PUT and PATCH you need to use a body-parser

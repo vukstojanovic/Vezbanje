@@ -7,7 +7,7 @@ import { useAuth } from "../../providers/authProvider";
 export default function Nav() {
   const deleteAccessTokenMutation = useDeleteAccessTokenMutation();
   const { data, isError, isLoading } = useMyDataQuery();
-  const isLogged = !isError && !isLoading;
+  // const isLogged = !isError && !isLoading;
   // const { user, logout } = useAuth();
 
   return (
@@ -27,7 +27,7 @@ export default function Nav() {
         })}
       </div>
       <div className="flex justify-between items-center capitalize space-x-4">
-        {!isLogged ? (
+        {!localStorage.getItem("user") ? (
           publicLinks.map((link) => {
             const { id, name, path } = link;
             return (

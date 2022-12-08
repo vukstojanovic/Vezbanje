@@ -7,5 +7,12 @@ export function getMyData() {
 }
 
 export default function useMyDataQuery() {
-  return useQuery([queryConstants.ME], getMyData);
+  return useQuery([queryConstants.ME], getMyData, {
+    onSuccess: (data) => {
+      localStorage.setItem("user", data.data.email);
+    },
+    onError: () => {
+      localStorage.removeItem("user");
+    },
+  });
 }
