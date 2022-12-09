@@ -105,14 +105,37 @@ main h1 {
   /* transform-origin: left top; */
 }
 
-.parent {
-  height: 100vh;
-  background: green;
+.flip-card {
+  border: 3px solid black;
+  border-radius: 10px;
+  width: 200px;
+  height: 300px;
+  cursor: pointer;
+  transition: all 0.8s ease-in-out;
+  position: relative;
+  transform-style: preserve-3d;
+  text-align: center;
+  perspective: 500px;
 }
 
-.child {
-  background: blue;
-  margin-top: 60px;
+.flip-card-front {
+  background-color: gold;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  background-color: #009579;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: scale(-1, 1);
+}
+
+.flip-card:hover {
+  transform: rotateY(180deg);
 }
 
 @keyframes loading-first {
