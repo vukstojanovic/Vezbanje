@@ -1,9 +1,10 @@
-import { useId, useState, useTransition } from "react";
+import { useEffect, useId, useState, useTransition } from "react";
 import "./App.css";
 
 function App() {
   const [input, setInput] = useState("");
   const [list, setList] = useState([]);
+  const [state, setState] = useState(null);
   const [isPending, startTransition] = useTransition();
   const id1 = useId();
   const id2 = useId();
@@ -19,6 +20,17 @@ function App() {
     });
   }
 
+  function changeState() {
+    setState(true);
+  }
+
+  useEffect(() => {
+    if (state) {
+      setState(false);
+    }
+    console.log(state);
+  }, [state]);
+
   return (
     <div className="App">
       <input type="text" value={input} onChange={handleInput} />
@@ -33,6 +45,7 @@ function App() {
       </div>
       <p>{id1}</p>
       <p>{id2}</p>
+      <button onClick={changeState}>Click to change state</button>
     </div>
   );
 }

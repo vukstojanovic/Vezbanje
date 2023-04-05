@@ -124,6 +124,7 @@ main h1 {
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
+  overflow: hidden;
 }
 
 .flip-card-back {
@@ -132,6 +133,7 @@ main h1 {
   height: 100%;
   position: absolute;
   transform: rotateY(180deg);
+  overflow: hidden;
 }
 
 .flip-card:hover {
@@ -159,4 +161,37 @@ main h1 {
   100% {
     border-color: #009579 transparent transparent transparent;
   }
+}
+
+.flex-container {
+  display: flex;
+  align-items: flex-start; /* Align items to the top of the container */
+}
+
+.column-1,
+.column-2,
+.column-3 {
+  flex: 1; /* All columns take up equal space */
+  align-self: flex-end; /* Align each column to the bottom of the container */
+  overflow-y: auto;
+}
+
+/* Set the height of the smallest column to "auto" */
+.column-1 {
+  height: auto;
+  background-color: red;
+}
+
+/* Set the height of the other columns to "100%" */
+.column-2,
+.column-3 {
+  height: 100%;
+}
+
+.column-2 {
+  background-color: purple;
+}
+
+.column-3 {
+  background-color: blue;
 }
