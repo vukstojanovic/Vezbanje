@@ -45,7 +45,7 @@ function TodoPage() {
     //   await queryClient.cancelQueries('todos');
     //   const previousTodos = queryClient.getQueryData('todos');
     // },
-    // onError: (_error, _newTodo, context) => {
+    // onError: (error, newTodo, context) => {
     //   queryClient.setQueryData("todos", context.previousTodos);
     // },
   });

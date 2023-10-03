@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .mouseBox {
+        border: 2px solid rgb(90, 17, 173);
+        width: 500px;
+        height: 500px;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Debounce and Throttle exercise</h1>
+    <div>
+      <label for="">Enter search term: </label>
+      <input placeholder="Type here..." type="text" id="searchTerm" />
+    </div>
+    <p id="typedText"></p>
+    <div class="mouseBox" id="mouseBox"></div>
+    <p>Number of mouse moves: <span id="mouseText"></span></p>
+    <script src="app.js"></script>
+  </body>
+</html>
